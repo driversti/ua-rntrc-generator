@@ -12,14 +12,29 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-package com.github.driversti.rntrc;
+package com.github.driversti.rntrc
 
-public class Runner {
+import spock.lang.Subject
+import spock.lang.Unroll
 
-  public static void main(String[] args) {
-    final RntrcGenerator generator = new RntrcGenerator();
-    final String rntrc = generator.rntrc();
-    System.out.println(rntrc);
-  }
+class ControlDigitCalculatorTest extends UnitTest {
 
+    @Subject
+    private ControlDigitCalculator calculator
+
+    void setup() {
+        calculator = new ControlDigitCalculator()
+    }
+
+    @Unroll
+    def "should calculate control digit"() {
+        expect:
+        calculator.controlDigit(first9digits) == expected
+
+        where:
+        first9digits || expected
+        "316621307"  || "4"
+        "224800033"  || "1"
+        "216451660"  || "0"
+    }
 }

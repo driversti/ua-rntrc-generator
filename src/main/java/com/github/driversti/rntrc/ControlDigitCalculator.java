@@ -17,11 +17,11 @@ package com.github.driversti.rntrc;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ControlDigitCalculator {
+class ControlDigitCalculator {
 
   String controlDigit(final String first9Digits) {
     final List<Integer> arr = first9Digits.chars()
-        .mapToObj(value -> Integer.parseInt(String.valueOf((char) value)))
+        .mapToObj(Character::getNumericValue)
         .collect(Collectors.toList());
 
     final int first = (arr.get(0) * (-1));

@@ -21,7 +21,11 @@ import java.util.Random;
 
 class LocalDateGenerator {
 
-  private static final Random random = new Random();
+  private final Random random;
+
+  LocalDateGenerator(Random random) {
+    this.random = random;
+  }
 
   LocalDate random() {
     final int year = randomYear();

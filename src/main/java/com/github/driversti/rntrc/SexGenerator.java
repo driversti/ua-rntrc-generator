@@ -14,23 +14,44 @@
 
 package com.github.driversti.rntrc;
 
+import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.Stream;
 
-public class SexGenerator {
+class SexGenerator {
+
+  private static final String[] MALE_VALUES = new String[]{"1", "3", "5", "7", "9"};
+  private static final String[] FEMALE_VALUES = new String[]{"0", "2", "4", "6", "8"};
+  private static final String[] ALL_VALUES = initAllValues();
 
   private final Random random;
-
-  public SexGenerator() {
-    this.random = new Random();
-  }
 
   public SexGenerator(Random random) {
     this.random = random;
   }
 
-  String sex() {
-    final int minInclusive = 0;
-    final int maxExclusive = 9;
-    return String.valueOf(random.nextInt(maxExclusive - minInclusive) + minInclusive);
+  private static String[] initAllValues() {
+    return Stream.concat(Arrays.stream(FEMALE_VALUES), Arrays.stream(MALE_VALUES))
+        .sorted().toArray(String[]::new);
+  }
+
+  String random() {
+    final int index = randomValue(ALL_VALUES.length);
+    return ALL_VALUES[index];
+  }
+
+  String male() {
+    final int index = randomValue(MALE_VALUES.length);
+    return MALE_VALUES[index];
+  }
+
+  String female() {
+    final int index = randomValue(FEMALE_VALUES.length);
+    return FEMALE_VALUES[index];
+  }
+
+  private int randomValue(final int max) {
+    final int min = 0;
+    return random.nextInt(max - min) + min;
   }
 }

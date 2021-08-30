@@ -20,30 +20,26 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import java.time.LocalDate;
 import java.time.Month;
 
-public class BirthdayDaysGenerator {
+class DaysToBirthdayGenerator {
 
   private static final int DAYS_LENGTH = 5;
   private static final LocalDate MIN_DATE = LocalDate.of(1899, Month.DECEMBER, 31);
 
   private final LocalDateGenerator localDateGenerator;
 
-  public BirthdayDaysGenerator() {
-    this.localDateGenerator = new LocalDateGenerator();
-  }
-
-  public BirthdayDaysGenerator(LocalDateGenerator localDateGenerator) {
+  DaysToBirthdayGenerator(LocalDateGenerator localDateGenerator) {
     this.localDateGenerator = localDateGenerator;
   }
 
-  String days(final LocalDate birthday) {
+  String random() {
+    return bornOn(localDateGenerator.random());
+  }
+
+  String bornOn(final LocalDate birthday) {
     validateBirthday(birthday);
     final long days = DAYS.between(MIN_DATE, birthday);
     final String daysStr = String.valueOf(days);
     return withLeadingZeros(daysStr);
-  }
-
-  String days() {
-    return days(localDateGenerator.random());
   }
 
   private void validateBirthday(LocalDate birthday) {
