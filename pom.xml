@@ -42,7 +42,7 @@
     <cglib-nodep.version>3.3.0</cglib-nodep.version>
 
     <!--  PLUGINS  -->
-    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+    <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     <gmavenplus-plugin.version>1.12.1</gmavenplus-plugin.version>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
